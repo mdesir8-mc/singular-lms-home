@@ -1,0 +1,194 @@
+/* Colors are copied from the app's design tokens (singular-lms docs/DESIGN_SYSTEM.md).
+   If the brand changes, update these values by hand; this repo has no build step. */
+:root {
+  --bg-canvas: #f6f8fb;
+  --bg-surface: #ffffff;
+  --bg-primary: #2747c6;
+  --bg-primary-hover: #1d37a0;
+  --bg-primary-subtle: #eef2ff;
+  --text-primary: #16244a;
+  --text-secondary: #34446b;
+  --text-on-primary: #ffffff;
+  --text-link: #2747c6;
+  --border-subtle: #dbe2ee;
+  --border-focus: #2747c6;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg-canvas: #0e1730;
+    --bg-surface: #142041;
+    --bg-primary: #8fa8ff;
+    --bg-primary-hover: #bbcbff;
+    --bg-primary-subtle: #1f3168;
+    --text-primary: #eef2fa;
+    --text-secondary: #b8c3de;
+    --text-on-primary: #0e1a33;
+    --text-link: #8fa8ff;
+    --border-subtle: #2a3a66;
+    --border-focus: #8fa8ff;
+  }
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  background: var(--bg-canvas);
+  color: var(--text-primary);
+  font-family: 'Atkinson Hyperlegible Next', 'Atkinson Hyperlegible', system-ui, -apple-system,
+    'Segoe UI', Roboto, sans-serif;
+  font-size: 1.125rem;
+  line-height: 1.6;
+}
+
+.wrap {
+  max-width: 44rem;
+  margin: 0 auto;
+  padding: 0 1rem;
+}
+
+.site-header {
+  background: var(--bg-surface);
+  border-bottom: 1px solid var(--border-subtle);
+}
+
+.bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  min-height: 4rem;
+}
+
+.brand {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.75rem;
+  min-height: 2.75rem;
+  color: var(--text-primary);
+  font-weight: 700;
+  text-decoration: none;
+}
+
+.brand img {
+  border-radius: 0.5rem;
+}
+
+h1 {
+  margin: 0 0 1rem;
+  font-size: clamp(2rem, 6vw, 2.75rem);
+  line-height: 1.15;
+}
+
+h2 {
+  margin: 3rem 0 1rem;
+  font-size: 1.5rem;
+  line-height: 1.25;
+}
+
+h3 {
+  margin: 0 0 0.25rem;
+  font-size: 1.125rem;
+}
+
+p {
+  margin: 0 0 1rem;
+}
+
+.hero {
+  padding: 3rem 0;
+  background: var(--bg-primary-subtle);
+}
+
+.lede {
+  font-size: 1.25rem;
+  color: var(--text-secondary);
+}
+
+.status {
+  display: inline-block;
+  padding: 0.5rem 0.75rem;
+  border: 1px solid var(--border-subtle);
+  border-radius: 0.5rem;
+  background: var(--bg-surface);
+}
+
+.steps {
+  display: grid;
+  gap: 1rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.steps li {
+  padding: 1rem 1.25rem;
+  border: 1px solid var(--border-subtle);
+  border-radius: 0.75rem;
+  background: var(--bg-surface);
+}
+
+.steps p {
+  margin: 0;
+  color: var(--text-secondary);
+}
+
+a {
+  color: var(--text-link);
+}
+
+.contact-link {
+  display: inline-flex;
+  align-items: center;
+  min-height: 2.75rem;
+}
+
+.button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 2.75rem;
+  padding: 0 1.25rem;
+  border: 2px solid var(--bg-primary);
+  border-radius: 0.5rem;
+  background: var(--bg-primary);
+  color: var(--text-on-primary);
+  font-weight: 700;
+  text-decoration: none;
+}
+
+.button:hover {
+  border-color: var(--bg-primary-hover);
+  background: var(--bg-primary-hover);
+}
+
+.button-quiet {
+  background: transparent;
+  color: var(--text-link);
+}
+
+.button-quiet:hover {
+  color: var(--text-on-primary);
+}
+
+a:focus-visible {
+  outline: 3px solid var(--border-focus);
+  outline-offset: 2px;
+}
+
+.site-footer {
+  margin-top: 3rem;
+  padding: 1.5rem 0;
+  border-top: 1px solid var(--border-subtle);
+  color: var(--text-secondary);
+  font-size: 1rem;
+}
+
+.site-footer p {
+  margin: 0;
+}
