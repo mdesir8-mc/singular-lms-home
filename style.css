@@ -1,32 +1,66 @@
-/* Colors are copied from the app's design tokens (singular-lms docs/DESIGN_SYSTEM.md).
-   If the brand changes, update these values by hand; this repo has no build step. */
+/* Values come from the app's design tokens, via the Figma "Business page"
+   (see docs/adr/0023 in the singular-lms repo). Variable names match the app's
+   tokens.css. This repo has no build step, so if the brand changes, update the
+   values here by hand. */
+
+@font-face {
+  font-family: 'Atkinson Hyperlegible Next';
+  src: url('/atkinson-hyperlegible-next-latin-wght-normal.woff2') format('woff2');
+  font-weight: 200 800;
+  font-style: normal;
+  font-display: swap;
+}
+
 :root {
-  --bg-canvas: #f6f8fb;
-  --bg-surface: #ffffff;
-  --bg-primary: #2747c6;
-  --bg-primary-hover: #1d37a0;
-  --bg-primary-subtle: #eef2ff;
-  --text-primary: #16244a;
-  --text-secondary: #34446b;
-  --text-on-primary: #ffffff;
-  --text-link: #2747c6;
-  --border-subtle: #dbe2ee;
-  --border-focus: #2747c6;
+  --color-bg-canvas: #f6f8fb;
+  --color-bg-surface: #ffffff;
+  --color-bg-sunken: #edf1f7;
+  --color-bg-primary: #2747c6;
+  --color-bg-primary-hover: #1d37a0;
+  --color-bg-primary-subtle: #eef2ff;
+  --color-bg-neutral-hover: #edf1f7;
+  --color-text-primary: #16244a;
+  --color-text-secondary: #34446b;
+  --color-text-on-primary: #ffffff;
+  --color-text-link: #2747c6;
+  --color-border-subtle: #cfddf0;
+  --color-border-strong: #7088b0;
+  --color-border-focus: #2747c6;
+  --color-brand-logo-accent: #a8bbff;
+  --color-icon-primary: #16244a;
+
+  --space-xs: 4px;
+  --space-sm: 8px;
+  --space-md: 12px;
+  --space-lg: 16px;
+  --space-xl: 24px;
+  --space-2xl: 32px;
+  --space-3xl: 48px;
+  --space-4xl: 64px;
+  --radius-md: 10px;
+  --radius-lg: 16px;
+  --size-touch-target: 44px;
+  --stroke-hairline: 1px;
 }
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --bg-canvas: #0e1730;
-    --bg-surface: #142041;
-    --bg-primary: #8fa8ff;
-    --bg-primary-hover: #bbcbff;
-    --bg-primary-subtle: #1f3168;
-    --text-primary: #eef2fa;
-    --text-secondary: #b8c3de;
-    --text-on-primary: #0e1a33;
-    --text-link: #8fa8ff;
-    --border-subtle: #2a3a66;
-    --border-focus: #8fa8ff;
+    --color-bg-canvas: #0e1730;
+    --color-bg-surface: #142041;
+    --color-bg-sunken: #0a1122;
+    --color-bg-primary: #8fa8ff;
+    --color-bg-primary-hover: #bbcbff;
+    --color-bg-primary-subtle: #1f3168;
+    --color-bg-neutral-hover: #1b2a52;
+    --color-text-primary: #eef2fa;
+    --color-text-secondary: #b8c3de;
+    --color-text-on-primary: #0e1a33;
+    --color-text-link: #8fa8ff;
+    --color-border-subtle: #2a3a66;
+    --color-border-strong: #6a7ba8;
+    --color-border-focus: #8fa8ff;
+    --color-brand-logo-accent: #6299d9;
+    --color-icon-primary: #eef2fa;
   }
 }
 
@@ -38,157 +72,289 @@
 
 body {
   margin: 0;
-  background: var(--bg-canvas);
-  color: var(--text-primary);
-  font-family: 'Atkinson Hyperlegible Next', 'Atkinson Hyperlegible', system-ui, -apple-system,
-    'Segoe UI', Roboto, sans-serif;
-  font-size: 1.125rem;
-  line-height: 1.6;
+  background: var(--color-bg-canvas);
+  color: var(--color-text-primary);
+  font-family: 'Atkinson Hyperlegible Next', system-ui, -apple-system, 'Segoe UI', Roboto,
+    sans-serif;
+  font-size: 18px;
+  line-height: 28px;
+}
+
+h1,
+h2,
+h3,
+p {
+  margin: 0;
 }
 
 .wrap {
-  max-width: 44rem;
-  margin: 0 auto;
-  padding: 0 1rem;
+  width: 100%;
+  max-width: 960px;
+  margin-inline: auto;
+  padding-inline: var(--space-lg);
 }
 
+@media (min-width: 600px) {
+  .wrap {
+    padding-inline: var(--space-xl);
+  }
+}
+
+/* Header */
 .site-header {
-  background: var(--bg-surface);
-  border-bottom: 1px solid var(--border-subtle);
+  background: var(--color-bg-surface);
+  border-bottom: var(--stroke-hairline) solid var(--color-border-subtle);
 }
 
 .bar {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  gap: 1rem;
-  min-height: 4rem;
+  padding-block: var(--space-md);
 }
 
 .brand {
   display: inline-flex;
   align-items: center;
-  gap: 0.75rem;
-  min-height: 2.75rem;
-  color: var(--text-primary);
-  font-weight: 700;
+  min-height: var(--size-touch-target);
+  color: var(--color-text-primary);
   text-decoration: none;
 }
 
-.brand img {
-  border-radius: 0.5rem;
+.logo {
+  position: relative;
+  display: inline-block;
+  isolation: isolate;
+  font: 800 24px/30px 'Atkinson Hyperlegible Next', system-ui, sans-serif;
+  white-space: nowrap;
+}
+
+.logo::before {
+  content: '';
+  position: absolute;
+  z-index: -1;
+  top: 16px;
+  left: -4px;
+  right: -4px;
+  height: 12px;
+  border-radius: 3px;
+  background: var(--color-brand-logo-accent);
+}
+
+/* Hero */
+.hero {
+  padding-block: var(--space-3xl) var(--space-2xl);
+}
+
+.hero .wrap {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: var(--space-lg);
 }
 
 h1 {
-  margin: 0 0 1rem;
-  font-size: clamp(2rem, 6vw, 2.75rem);
-  line-height: 1.15;
-}
-
-h2 {
-  margin: 3rem 0 1rem;
-  font-size: 1.5rem;
-  line-height: 1.25;
-}
-
-h3 {
-  margin: 0 0 0.25rem;
-  font-size: 1.125rem;
-}
-
-p {
-  margin: 0 0 1rem;
-}
-
-.hero {
-  padding: 3rem 0;
-  background: var(--bg-primary-subtle);
+  max-width: 720px;
+  font-size: 32px;
+  line-height: 38px;
+  font-weight: 700;
+  letter-spacing: -0.4px;
 }
 
 .lede {
-  font-size: 1.25rem;
-  color: var(--text-secondary);
+  max-width: 640px;
+  color: var(--color-text-secondary);
 }
 
-.status {
-  display: inline-block;
-  padding: 0.5rem 0.75rem;
-  border: 1px solid var(--border-subtle);
-  border-radius: 0.5rem;
-  background: var(--bg-surface);
+.notice {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--space-md);
+  width: 100%;
+  max-width: 560px;
+  padding: var(--space-md) var(--space-lg) var(--space-md) var(--space-md);
+  border-radius: var(--radius-md);
+  background: var(--color-bg-primary-subtle);
+  font-size: 14px;
+  line-height: 20px;
 }
 
-.steps {
+.notice-icon {
+  flex: none;
+  color: var(--color-icon-primary);
+}
+
+.notice-text {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.notice-text strong {
+  font-size: 14px;
+  line-height: 18px;
+  font-weight: 600;
+}
+
+/* How it works */
+.how {
+  padding-block: var(--space-2xl) var(--space-3xl);
+}
+
+.how .wrap {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-lg);
+}
+
+h2 {
+  font-size: 24px;
+  line-height: 30px;
+  font-weight: 700;
+  letter-spacing: -0.2px;
+}
+
+.cards {
   display: grid;
-  gap: 1rem;
+  grid-template-columns: 1fr;
+  gap: var(--space-lg);
   margin: 0;
   padding: 0;
   list-style: none;
 }
 
-.steps li {
-  padding: 1rem 1.25rem;
-  border: 1px solid var(--border-subtle);
-  border-radius: 0.75rem;
-  background: var(--bg-surface);
+.card {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-md);
+  padding: var(--space-xl);
+  border: var(--stroke-hairline) solid var(--color-border-subtle);
+  border-radius: var(--radius-lg);
+  background: var(--color-bg-surface);
 }
 
-.steps p {
-  margin: 0;
-  color: var(--text-secondary);
-}
-
-a {
-  color: var(--text-link);
-}
-
-.contact-link {
-  display: inline-flex;
+.card-icon {
+  display: flex;
   align-items: center;
-  min-height: 2.75rem;
+  justify-content: center;
+  width: var(--size-touch-target);
+  height: var(--size-touch-target);
+  border-radius: var(--radius-md);
+  background: var(--color-bg-primary-subtle);
+  color: var(--color-icon-primary);
 }
 
+.card-text {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-xs);
+}
+
+h3 {
+  font-size: 20px;
+  line-height: 26px;
+  font-weight: 600;
+}
+
+.card-text p {
+  font-size: 16px;
+  line-height: 24px;
+  color: var(--color-text-secondary);
+}
+
+/* Contact */
+.contact {
+  padding-block: var(--space-3xl);
+  background: var(--color-bg-sunken);
+}
+
+.contact .wrap {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: var(--space-md);
+}
+
+/* Buttons (all are links) */
 .button {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  min-height: 2.75rem;
-  padding: 0 1.25rem;
-  border: 2px solid var(--bg-primary);
-  border-radius: 0.5rem;
-  background: var(--bg-primary);
-  color: var(--text-on-primary);
-  font-weight: 700;
+  min-height: var(--size-touch-target);
+  padding: 0 var(--space-xl);
+  border: 0;
+  border-radius: var(--radius-md);
+  font-size: 16px;
+  line-height: 20px;
+  font-weight: 600;
   text-decoration: none;
 }
 
-.button:hover {
-  border-color: var(--bg-primary-hover);
-  background: var(--bg-primary-hover);
-}
-
-.button-quiet {
-  background: transparent;
-  color: var(--text-link);
-}
-
-.button-quiet:hover {
-  color: var(--text-on-primary);
-}
-
-a:focus-visible {
-  outline: 3px solid var(--border-focus);
+.button:focus-visible {
+  outline: 2px solid var(--color-border-focus);
   outline-offset: 2px;
 }
 
-.site-footer {
-  margin-top: 3rem;
-  padding: 1.5rem 0;
-  border-top: 1px solid var(--border-subtle);
-  color: var(--text-secondary);
-  font-size: 1rem;
+.button-primary {
+  background: var(--color-bg-primary);
+  color: var(--color-text-on-primary);
 }
 
-.site-footer p {
-  margin: 0;
+.button-primary:hover,
+.button-primary:active {
+  background: var(--color-bg-primary-hover);
+}
+
+.button-secondary {
+  background: var(--color-bg-surface);
+  color: var(--color-text-primary);
+  border: var(--stroke-hairline) solid var(--color-border-strong);
+}
+
+.button-secondary:hover,
+.button-secondary:active {
+  background: var(--color-bg-neutral-hover);
+}
+
+.button-ghost {
+  background: transparent;
+  color: var(--color-text-link);
+}
+
+.button-ghost:hover,
+.button-ghost:active {
+  background: var(--color-bg-primary-subtle);
+}
+
+/* Footer */
+.site-footer {
+  padding-block: var(--space-xl);
+  background: var(--color-bg-surface);
+  border-top: var(--stroke-hairline) solid var(--color-border-subtle);
+  color: var(--color-text-secondary);
+  font-size: 14px;
+  line-height: 20px;
+}
+
+/* Wider screens */
+@media (min-width: 840px) {
+  .hero {
+    padding-block: var(--space-4xl) var(--space-3xl);
+  }
+
+  h1 {
+    font-size: 40px;
+    line-height: 46px;
+    font-weight: 800;
+    letter-spacing: -0.6px;
+  }
+
+  .how {
+    padding-block: var(--space-3xl) var(--space-4xl);
+  }
+
+  .cards {
+    grid-template-columns: repeat(3, 1fr);
+    gap: var(--space-xl);
+  }
 }

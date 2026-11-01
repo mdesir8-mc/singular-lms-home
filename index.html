@@ -10,22 +10,28 @@
     />
     <meta
       http-equiv="Content-Security-Policy"
-      content="default-src 'none'; style-src 'self'; img-src 'self'; base-uri 'none'; form-action 'none'"
+      content="default-src 'none'; style-src 'self'; font-src 'self'; img-src 'self'; base-uri 'none'; form-action 'none'"
     />
     <meta name="referrer" content="strict-origin-when-cross-origin" />
     <meta name="color-scheme" content="light dark" />
     <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
     <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+    <link
+      rel="preload"
+      href="/atkinson-hyperlegible-next-latin-wght-normal.woff2"
+      as="font"
+      type="font/woff2"
+      crossorigin
+    />
     <link rel="stylesheet" href="/style.css" />
   </head>
   <body>
     <header class="site-header">
       <div class="wrap bar">
-        <a class="brand" href="/">
-          <img src="/icon-192.png" alt="" width="32" height="32" />
-          <span>Singular LMS</span>
-        </a>
-        <a class="button button-quiet" href="https://app.singular-lms.com">Sign in</a>
+        <a class="brand" href="/" aria-label="Singular LMS home"
+          ><span class="logo" aria-hidden="true">Singular</span></a
+        >
+        <a class="button button-ghost" href="https://app.singular-lms.com">Sign in</a>
       </div>
     </header>
 
@@ -37,50 +43,73 @@
             Singular LMS is a learning management system for self-learners and homeschooling
             households.
           </p>
-          <p class="status">
-            <strong>Currently in private testing.</strong> Sign-up is not open to the public yet.
-          </p>
-          <p>
-            <a class="button" href="mailto:inquiries@singular-lms.com">Get in touch</a>
+          <div class="notice">
+            <svg class="notice-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 11V16M12 7.5V7.51M12 21C13.1819 21 14.3522 20.7672 15.4442 20.3149C16.5361 19.8626 17.5282 19.1997 18.364 18.364C19.1997 17.5282 19.8626 16.5361 20.3149 15.4442C20.7672 14.3522 21 13.1819 21 12C21 10.8181 20.7672 9.64778 20.3149 8.55585C19.8626 7.46392 19.1997 6.47177 18.364 5.63604C17.5282 4.80031 16.5361 4.13738 15.4442 3.68508C14.3522 3.23279 13.1819 3 12 3C9.61305 3 7.32387 3.94821 5.63604 5.63604C3.94821 7.32387 3 9.61305 3 12C3 14.3869 3.94821 16.6761 5.63604 18.364C7.32387 20.0518 9.61305 21 12 21Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            <p class="notice-text">
+              <strong>Currently in private testing.</strong>
+              <span>Sign-up is not open to the public yet.</span>
+            </p>
+          </div>
+          <p class="hero-action">
+            <a class="button button-primary" href="mailto:inquiries@singular-lms.com">Get in touch</a>
           </p>
         </div>
       </section>
 
-      <section class="wrap" aria-labelledby="how">
-        <h2 id="how">How it works</h2>
-        <ul class="steps">
-          <li>
-            <h3>One household, many learners</h3>
-            <p>
-              A household has guardians, learner profiles for children, and optionally an adult
-              profile for self-directed study.
-            </p>
-          </li>
-          <li>
-            <h3>Build courses, by hand or with a draft</h3>
-            <p>
-              Guardians can write a course themselves or ask for an AI-assisted draft. A draft stays
-              a draft until a guardian reviews and publishes it.
-            </p>
-          </li>
-          <li>
-            <h3>Lessons, quizzes and assignments</h3>
-            <p>
-              Learners work through lessons, take quizzes and submit assignments. Guardians review
-              the work and grade it.
-            </p>
-          </li>
-        </ul>
+      <section class="how" aria-labelledby="how">
+        <div class="wrap">
+          <h2 id="how">How it works</h2>
+          <ul class="cards">
+            <li class="card">
+              <span class="card-icon">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M2.5 20C2.5 18.2761 3.18482 16.6228 4.40381 15.4038C5.62279 14.1848 7.27609 13.5 9 13.5C10.7239 13.5 12.3772 14.1848 13.5962 15.4038C14.8152 16.6228 15.5 18.2761 15.5 20M16 4.3C16.6196 4.57452 17.1462 5.02304 17.5159 5.59109C17.8855 6.15913 18.0823 6.82228 18.0823 7.5C18.0823 8.17772 17.8855 8.84087 17.5159 9.40891C17.1462 9.97696 16.6196 10.4255 16 10.7M18 14C19.0911 14.5667 19.9992 15.4312 20.6187 16.4933C21.2382 17.5553 21.5438 18.7713 21.5 20M9 11C9.92826 11 10.8185 10.6313 11.4749 9.97487C12.1313 9.3185 12.5 8.42826 12.5 7.5C12.5 6.57174 12.1313 5.6815 11.4749 5.02513C10.8185 4.36875 9.92826 4 9 4C8.07174 4 7.1815 4.36875 6.52513 5.02513C5.86875 5.6815 5.5 6.57174 5.5 7.5C5.5 8.42826 5.86875 9.3185 6.52513 9.97487C7.1815 10.6313 8.07174 11 9 11Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              </span>
+              <div class="card-text">
+                <h3>One household, many learners</h3>
+                <p>
+                  A household has guardians, learner profiles for children, and optionally an adult
+                  profile for self-directed study.
+                </p>
+              </div>
+            </li>
+            <li class="card">
+              <span class="card-icon">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M11 3L12.8 8.2L18 10L12.8 11.8L11 17L9.2 11.8L4 10L9.2 8.2L11 3ZM19 15L19.8 17.2L22 18L19.8 18.8L19 21L18.2 18.8L16 18L18.2 17.2L19 15Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              </span>
+              <div class="card-text">
+                <h3>Build courses, by hand or with a draft</h3>
+                <p>
+                  Guardians can write a course themselves or ask for an AI-assisted draft. A draft
+                  stays a draft until a guardian reviews and publishes it.
+                </p>
+              </div>
+            </li>
+            <li class="card">
+              <span class="card-icon">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M4 7L6 9L9 6M4 16L6 18L9 15M12 8H20M12 17H20" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              </span>
+              <div class="card-text">
+                <h3>Lessons, quizzes and assignments</h3>
+                <p>
+                  Learners work through lessons, take quizzes and submit assignments. Guardians
+                  review the work and grade it.
+                </p>
+              </div>
+            </li>
+          </ul>
+        </div>
       </section>
 
-      <section class="wrap" aria-labelledby="contact">
-        <h2 id="contact">Contact</h2>
-        <p>Questions, or interested in testing? Write to us:</p>
-        <p>
-          <a class="contact-link" href="mailto:inquiries@singular-lms.com"
-            >inquiries@singular-lms.com</a
-          >
-        </p>
+      <section class="contact" aria-labelledby="contact">
+        <div class="wrap">
+          <h2 id="contact">Contact</h2>
+          <p>Questions, or interested in testing? Write to us:</p>
+          <p>
+            <a class="button button-secondary" href="mailto:inquiries@singular-lms.com"
+              >inquiries@singular-lms.com</a
+            >
+          </p>
+        </div>
       </section>
     </main>
 
